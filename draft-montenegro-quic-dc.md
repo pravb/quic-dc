@@ -29,7 +29,7 @@ informative:
 --- abstract
 
 QUIC is a general-purpose transport for the Internet. This document defines extensions to make QUIC more
-amenable to datacenter environments.
+amenable to datacenter environments by allowing packet number encryption to be optionally disabled.
 
 --- middle
 
