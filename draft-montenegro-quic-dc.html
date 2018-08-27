@@ -297,8 +297,8 @@ ul.toc li {
   <meta name="dct.creator" content="Montenegro, G., Banks, N., and P. Balasubramanian" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-montenegro-quic-dc-latest" />
   <meta name="dct.issued" scheme="ISO8601" content="2018-27" />
-  <meta name="dct.abstract" content="QUIC is a general-purpose transport for the Internet. This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number protection to be optionally disabled." />
-  <meta name="description" content="QUIC is a general-purpose transport for the Internet. This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number protection to be optionally disabled." />
+  <meta name="dct.abstract" content="This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number protection to be optionally disabled." />
+  <meta name="description" content="This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number protection to be optionally disabled." />
 
 </head>
 
@@ -336,7 +336,7 @@ ul.toc li {
   <span class="filename">draft-montenegro-quic-dc-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>QUIC is a general-purpose transport for the Internet. This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number protection to be optionally disabled.</p>
+<p>This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number protection to be optionally disabled.</p>
 <h1><a>Note to Readers</a></h1>
 <p>Discussion of this draft takes place on the QUIC working group mailing list (quic@ietf.org), which is archived at <a href="https://mailarchive.ietf.org/arch/search/?email_list=quic">https://mailarchive.ietf.org/arch/search/?email_list=quic</a>.</p>
 <p>Working Group information can be found at <a href="https://github.com/quicwg">https://github.com/quicwg</a>; source code and issues list for this draft can be found at <a href="https://github.com/quicwg/base-drafts/labels/-recovery">https://github.com/quicwg/base-drafts/labels/-recovery</a>.</p>
@@ -398,11 +398,11 @@ ul.toc li {
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
-<p id="rfc.section.4.p.1">TODO Security</p>
+<p id="rfc.section.4.p.1">Per section 6.11.5 of <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>, PNP is a partial mitigation against linkability and to prevent ossification.  The &#8220;disable_packet_number_protection&#8221; parameter should be negotiated in environments in which these are not a concern.</p>
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
-<p id="rfc.section.5.p.1">This document requests IANA assign a value to the new transport parameter as follows:</p>
+<p id="rfc.section.5.p.1">Per section 13.1 of <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>, this document requests IANA assign a value for the new transport parameter and record it in the registry for &#8220;QUIC Transport Parameters&#8221; under the &#8220;QUIC Protocol&#8221; heading.  IANA is further requested to assign a value with the first byte in the range 0x00 to 0xfe (in hexadecimal) as follows:</p>
 <table cellpadding="3" cellspacing="0" class="tt full center">
 <thead><tr>
 <th class="left">Value</th>

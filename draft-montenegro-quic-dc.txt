@@ -14,10 +14,9 @@ Expires: February 28, 2019                         Microsoft Corporation
 
 Abstract
 
-   QUIC is a general-purpose transport for the Internet.  This document
-   defines extensions to make QUIC more amenable to datacenter
-   environments by allowing packet number protection to be optionally
-   disabled.
+   This document defines extensions to make QUIC more amenable to
+   datacenter environments by allowing packet number protection to be
+   optionally disabled.
 
 Note to Readers
 
@@ -46,9 +45,10 @@ Status of This Memo
 
    This Internet-Draft will expire on February 28, 2019.
 
+Copyright Notice
 
-
-
+   Copyright (c) 2018 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
 
 
 
@@ -57,11 +57,6 @@ Montenegro, et al.      Expires February 28, 2019               [Page 1]
 
 Internet-Draft               Datacenter QUIC                 August 2018
 
-
-Copyright Notice
-
-   Copyright (c) 2018 IETF Trust and the persons identified as the
-   document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
@@ -106,6 +101,11 @@ Table of Contents
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
    "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+
+
 
 
 
@@ -113,9 +113,6 @@ Montenegro, et al.      Expires February 28, 2019               [Page 2]
 
 Internet-Draft               Datacenter QUIC                 August 2018
 
-
-   14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
 
 3.  Transport Parameter to Disable Packet Number Protection
 
@@ -136,12 +133,18 @@ Internet-Draft               Datacenter QUIC                 August 2018
 
 4.  Security Considerations
 
-   TODO Security
+   Per section 6.11.5 of [QUIC-TLS], PNP is a partial mitigation against
+   linkability and to prevent ossification.  The
+   "disable_packet_number_protection" parameter should be negotiated in
+   environments in which these are not a concern.
 
 5.  IANA Considerations
 
-   This document requests IANA assign a value to the new transport
-   parameter as follows:
+   Per section 13.1 of [QUIC-TLS], this document requests IANA assign a
+   value for the new transport parameter and record it in the registry
+   for "QUIC Transport Parameters" under the "QUIC Protocol" heading.
+   IANA is further requested to assign a value with the first byte in
+   the range 0x00 to 0xfe (in hexadecimal) as follows:
 
        +--------+----------------------------------+---------------+
        | Value  | Parameter Name                   | Specification |
@@ -158,10 +161,7 @@ Internet-Draft               Datacenter QUIC                 August 2018
               Layer Security (TLS) to Secure QUIC", draft-ietf-quic-tls-
               latest (work in progress).
 
-   [QUIC-TRANSPORT]
-              Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
-              Multiplexed and Secure Transport", draft-ietf-quic-
-              transport-latest (work in progress).
+
 
 
 
@@ -169,6 +169,11 @@ Montenegro, et al.      Expires February 28, 2019               [Page 3]
 
 Internet-Draft               Datacenter QUIC                 August 2018
 
+
+   [QUIC-TRANSPORT]
+              Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
+              Multiplexed and Secure Transport", draft-ietf-quic-
+              transport-latest (work in progress).
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -209,11 +214,6 @@ Authors' Addresses
    Microsoft Corporation
 
    Email: PravB@Microsoft.com
-
-
-
-
-
 
 
 
