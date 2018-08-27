@@ -283,7 +283,7 @@ ul.toc li {
   <link href="#rfc.toc" rel="Contents">
 <link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
 <link href="#rfc.section.2" rel="Chapter" title="2 Conventions and Definitions">
-<link href="#rfc.section.3" rel="Chapter" title="3 Transport Parameter to Disable Packet Number Encryption">
+<link href="#rfc.section.3" rel="Chapter" title="3 Transport Parameter to Disable Packet Number Protection">
 <link href="#rfc.section.4" rel="Chapter" title="4 Security Considerations">
 <link href="#rfc.section.5" rel="Chapter" title="5 IANA Considerations">
 <link href="#rfc.references" rel="Chapter" title="6 Normative References">
@@ -296,9 +296,9 @@ ul.toc li {
 
   <meta name="dct.creator" content="Montenegro, G." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-montenegro-quic-dc-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-08-24" />
-  <meta name="dct.abstract" content="QUIC is a general-purpose transport for the Internet. This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number encryption to be optionally disabled." />
-  <meta name="description" content="QUIC is a general-purpose transport for the Internet. This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number encryption to be optionally disabled." />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-27" />
+  <meta name="dct.abstract" content="QUIC is a general-purpose transport for the Internet. This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number protection to be optionally disabled." />
+  <meta name="description" content="QUIC is a general-purpose transport for the Internet. This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number protection to be optionally disabled." />
 
 </head>
 
@@ -308,7 +308,7 @@ ul.toc li {
     <tbody>
     
     	<tr>
-<td class="left">QUIC Working Group</td>
+<td class="left">QUIC</td>
 <td class="right">G. Montenegro</td>
 </tr>
 <tr>
@@ -316,11 +316,11 @@ ul.toc li {
 <td class="right">Microsoft Corporation</td>
 </tr>
 <tr>
-<td class="left">Intended status: Informational</td>
-<td class="right">August 24, 2018</td>
+<td class="left">Intended status: Standards Track</td>
+<td class="right">August 27, 2018</td>
 </tr>
 <tr>
-<td class="left">Expires: February 25, 2019</td>
+<td class="left">Expires: February 28, 2019</td>
 <td class="right"></td>
 </tr>
 
@@ -332,12 +332,15 @@ ul.toc li {
   <span class="filename">draft-montenegro-quic-dc-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>QUIC is a general-purpose transport for the Internet. This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number encryption to be optionally disabled.</p>
+<p>QUIC is a general-purpose transport for the Internet. This document defines extensions to make QUIC more amenable to datacenter environments by allowing packet number protection to be optionally disabled.</p>
+<h1><a>Note to Readers</a></h1>
+<p>Discussion of this draft takes place on the QUIC working group mailing list (quic@ietf.org), which is archived at <a href="https://mailarchive.ietf.org/arch/search/?email_list=quic">https://mailarchive.ietf.org/arch/search/?email_list=quic</a>.</p>
+<p>Working Group information can be found at <a href="https://github.com/quicwg">https://github.com/quicwg</a>; source code and issues list for this draft can be found at <a href="https://github.com/quicwg/base-drafts/labels/-recovery">https://github.com/quicwg/base-drafts/labels/-recovery</a>.</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on February 25, 2019.</p>
+<p>This Internet-Draft will expire on February 28, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -351,7 +354,7 @@ ul.toc li {
 </li>
 <li>2.   <a href="#rfc.section.2">Conventions and Definitions</a>
 </li>
-<li>3.   <a href="#rfc.section.3">Transport Parameter to Disable Packet Number Encryption</a>
+<li>3.   <a href="#rfc.section.3">Transport Parameter to Disable Packet Number Protection</a>
 </li>
 <li>4.   <a href="#rfc.section.4">Security Considerations</a>
 </li>
@@ -370,15 +373,22 @@ ul.toc li {
   <h1 id="rfc.section.1">
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
-<p id="rfc.section.1.p.1">QUIC is a new transport for the internet. In its generality, there are features which are not well suited for datacenter environments. In particular, QUIC uses Packet Number Encryption (PNE). This document defines a negotiation using transport parameters to disable PNE. Internet facing nodes should not disable PNE, so browsers, for example, should not implement this extension. On the other hand, properly configured nodes within a datacenter could turn off PNE in their exchanges to avoid the CPU cost that PNE implies.</p>
+<p id="rfc.section.1.p.1">QUIC is a new transport for the internet. In its generality, there are features which are not well suited for datacenter environments. In particular, QUIC uses Packet Number Protection(PNP). This document defines a negotiation using transport parameters to disable PNE. Internet facing nodes should not disable PNE, so browsers, for example, should not implement this extension. On the other hand, properly configured nodes within a datacenter could turn off PNE in their exchanges to avoid the CPU cost that PNE implies.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#conventions-and-definitions" id="conventions-and-definitions">Conventions and Definitions</a>
 </h1>
 <p id="rfc.section.2.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;NOT RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in BCP 14 <a href="#RFC2119" class="xref">[RFC2119]</a> <a href="#RFC8174" class="xref">[RFC8174]</a> when, and only when, they appear in all capitals, as shown here.</p>
 <h1 id="rfc.section.3">
-<a href="#rfc.section.3">3.</a> <a href="#transport-parameter-to-disable-packet-number-encryption" id="transport-parameter-to-disable-packet-number-encryption">Transport Parameter to Disable Packet Number Encryption</a>
+<a href="#rfc.section.3">3.</a> <a href="#transport-parameter-to-disable-packet-number-protection" id="transport-parameter-to-disable-packet-number-protection">Transport Parameter to Disable Packet Number Protection</a>
 </h1>
-<p id="rfc.section.3.p.1">TODO TEST</p>
+<p id="rfc.section.3.p.1">This document defines a new transport parameter for QUIC <a href="#QUIC-TRANSPORT" class="xref">[QUIC-TRANSPORT]</a>:</p>
+<p></p>
+
+<dl>
+<dt>disable_packet_number_protection (0x000c ?, value TBD):</dt>
+<dd style="margin-left: 8">The endpoint is disabling packet number protection as specified in <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>.  This parameter is a zero-length value. This parameter only applies to short headers.</dd>
+</dl>
+<p id="rfc.section.3.p.3">A peer that has sent the &#8220;disable_packet_number_protection&#8221; parameter MUST provide packet number protection until the TLS handshake is over (thus validating the transport parameters).</p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
@@ -386,10 +396,32 @@ ul.toc li {
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
-<p id="rfc.section.5.p.1">This document has no IANA actions.</p>
+<p id="rfc.section.5.p.1">This document requests IANA assign a value to the new transport parameter as follows:</p>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+<thead><tr>
+<th class="left">Value</th>
+<th class="left">Parameter Name</th>
+<th class="left">Specification</th>
+</tr></thead>
+<tbody><tr>
+<td class="left">0x000c</td>
+<td class="left">disable_packet_number_protection</td>
+<td class="left">This document</td>
+</tr></tbody>
+</table>
 <h1 id="rfc.references">
 <a href="#rfc.references">6.</a> Normative References</h1>
 <table><tbody>
+<tr>
+<td class="reference"><b id="QUIC-TLS">[QUIC-TLS]</b></td>
+<td class="top">
+<a title="Mozilla">Thomson, M.</a> and <a title="sn3rd">S. Turner</a>, "<a href="https://tools.ietf.org/html/draft-ietf-quic-tls-latest">Using Transport Layer Security (TLS) to Secure QUIC</a>", Internet-Draft draft-ietf-quic-tls-latest</td>
+</tr>
+<tr>
+<td class="reference"><b id="QUIC-TRANSPORT">[QUIC-TRANSPORT]</b></td>
+<td class="top">
+<a title="Fastly">Iyengar, J.</a> and <a title="Mozilla">M. Thomson</a>, "<a href="https://tools.ietf.org/html/draft-ietf-quic-transport-latest">QUIC: A UDP-Based Multiplexed and Secure Transport</a>", Internet-Draft draft-ietf-quic-transport-latest</td>
+</tr>
 <tr>
 <td class="reference"><b id="RFC2119">[RFC2119]</b></td>
 <td class="top">
