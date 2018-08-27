@@ -18,6 +18,16 @@ author:
     name: Gabriel Montenegro
     organization: Microsoft Corporation
     email: Gabriel.Montenegro@Microsoft.com
+ -
+    ins: N. Banks
+    name: Nick Banks
+    organization: Microsoft Corporation
+    email: NiBanks@Microsoft.com
+ -
+    ins: P. Balasubramanian
+    name: Praveen Balasubramanian
+    organization: Microsoft Corporation
+    email: PravB@Microsoft.com
 
 normative:
 
