@@ -128,9 +128,8 @@ Internet-Draft               Datacenter QUIC                 August 2018
    parameter requires both peers to send this transport parameter.
 
    Peers that have successfully negotiated the
-   "disable_packet_number_protection" parameter MUST provide packet
-   number protection until the TLS handshake is over (thus validating
-   the transport parameters).
+   "disable_packet_number_protection" parameter MUST NOT use packet
+   number protection on short header packets.
 
 4.  Security Considerations
 
@@ -160,6 +159,7 @@ Internet-Draft               Datacenter QUIC                 August 2018
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", draft-ietf-quic-
               transport-latest (work in progress).
+
 
 
 

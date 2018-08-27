@@ -390,7 +390,7 @@ ul.toc li {
 <dd style="margin-left: 8">The endpoint is disabling packet number protection as specified in <a href="#QUIC-TLS" class="xref">[QUIC-TLS]</a>.  This parameter is a zero-length value. This parameter only affects short headers.</dd>
 </dl>
 <p id="rfc.section.3.p.3">A successful negotiation of the &#8220;disable_packet_number_protection&#8221; parameter requires both peers to send this transport parameter.</p>
-<p id="rfc.section.3.p.4">Peers that have successfully negotiated the &#8220;disable_packet_number_protection&#8221; parameter MUST provide packet number protection until the TLS handshake is over (thus validating the transport parameters).</p>
+<p id="rfc.section.3.p.4">Peers that have successfully negotiated the &#8220;disable_packet_number_protection&#8221; parameter MUST NOT use packet number protection on short header packets.</p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
