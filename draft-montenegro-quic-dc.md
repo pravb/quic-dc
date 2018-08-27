@@ -79,7 +79,12 @@ code and issues list for this draft can be found at
 # Introduction
 
 QUIC is a new transport for the internet. In its generality, there are features which are not well suited
-for datacenter environments. In particular, QUIC uses Packet Number Protection(PNP). This document defines
+for datacenter environments. In particular, QUIC uses Packet Number Protection (PNP)
+to prevent ossification and to provide unlinkability upon (voluntary) migration.
+However, there are environments where these are not a concern, in particular,
+connections within a datacenter and in the backend.
+
+This document defines
 a negotiation using transport parameters to disable PNE. Internet facing nodes should not disable PNE, so
 browsers, for example, should not implement this extension. On the other hand, properly configured nodes
 within a datacenter could turn off PNE in their exchanges to avoid the CPU cost that PNE implies.
@@ -98,10 +103,14 @@ This document defines a new transport parameter for QUIC {{QUIC-TRANSPORT}}:
 disable_packet_number_protection (0x000c ?, value TBD):
 
 : The endpoint is disabling packet number protection as specified in {{QUIC-TLS}}.
-  This parameter is a zero-length value. This parameter only applies to short headers.
+  This parameter is a zero-length value. This parameter only affects short headers.
 
-A peer that has sent the "disable_packet_number_protection" parameter MUST provide packet number
-protection until the TLS handshake is over (thus validating the transport parameters).
+A successful negotiation of the "disable_packet_number_protection" parameter
+requires both peers to send this transport parameter.
+
+Peers that have successfully negotiated the "disable_packet_number_protection" parameter MUST
+provide packet number protection until the TLS handshake is over (thus validating the transport parameters).
+
 
 # Security Considerations
 
