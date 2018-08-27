@@ -71,7 +71,7 @@ informative:
 
 --- abstract
 
-QUIC is a general-purpose transport for the Internet. This document defines extensions to make QUIC more
+This document defines extensions to make QUIC more
 amenable to datacenter environments by allowing packet number protection to be optionally disabled.
 
 --- note_Note_to_Readers
@@ -123,12 +123,17 @@ Peers that have successfully negotiated the "disable_packet_number_protection" p
 
 # Security Considerations
 
-TODO Security
-
+Per section 6.11.5 of {{QUIC-TLS}}, PNP is a partial mitigation against linkability and to prevent ossification.
+The "disable_packet_number_protection" parameter should be negotiated in environments in which these are not
+a concern.
 
 # IANA Considerations
 
-This document requests IANA assign a value to the new transport parameter as follows:
+Per section 13.1 of {{QUIC-TLS}}, this document requests IANA assign a value for the new transport parameter
+and record it in the registry for "QUIC Transport Parameters" under the "QUIC Protocol" heading.
+IANA is further requested to assign a value with the first byte in the range 0x00 to 0xfe (in
+hexadecimal) as follows:
+
 
 | Value  | Parameter Name                   | Specification                       |
 |:-------|:---------------------------------|:------------------------------------|
