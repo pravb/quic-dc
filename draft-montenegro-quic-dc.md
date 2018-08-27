@@ -108,8 +108,7 @@ disable_packet_number_protection (0x000c ?, value TBD):
 A successful negotiation of the "disable_packet_number_protection" parameter
 requires both peers to send this transport parameter.
 
-Peers that have successfully negotiated the "disable_packet_number_protection" parameter MUST
-provide packet number protection until the TLS handshake is over (thus validating the transport parameters).
+Peers that have successfully negotiated the "disable_packet_number_protection" parameter MUST NOT use packet number protection on short header packets.
 
 
 # Security Considerations
