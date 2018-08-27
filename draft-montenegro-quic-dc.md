@@ -95,9 +95,9 @@ However, there are environments where these are not a concern, in particular,
 connections within a datacenter and in the backend.
 
 This document defines
-a negotiation using transport parameters to disable PNE. Internet facing nodes should not disable PNE, so
+a negotiation using transport parameters to disable PNP. Internet facing nodes should not disable PNP, so
 browsers, for example, should not implement this extension. On the other hand, properly configured nodes
-within a datacenter could turn off PNE in their exchanges to avoid the CPU cost that PNE implies.
+within a datacenter could turn off PNP in their exchanges to avoid the CPU cost that PNP implies.
 
 # Conventions and Definitions
 
