@@ -3,9 +3,10 @@
 
 
 QUIC                                                       G. Montenegro
-Internet-Draft                                     Microsoft Corporation
-Intended status: Standards Track                         August 27, 2018
-Expires: February 28, 2019
+Internet-Draft                                                  N. Banks
+Intended status: Standards Track                      P. Balasubramanian
+Expires: February 28, 2019                         Microsoft Corporation
+                                                         August 27, 2018
 
 
                           QUIC for Datacenter
@@ -45,18 +46,22 @@ Status of This Memo
 
    This Internet-Draft will expire on February 28, 2019.
 
+
+
+
+
+
+
+
+Montenegro, et al.      Expires February 28, 2019               [Page 1]
+
+Internet-Draft               Datacenter QUIC                 August 2018
+
+
 Copyright Notice
 
    Copyright (c) 2018 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
-
-
-
-
-Montenegro              Expires February 28, 2019               [Page 1]
-
-Internet-Draft               Datacenter QUIC                 August 2018
-
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
@@ -79,7 +84,7 @@ Table of Contents
      6.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
      6.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
    Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .   4
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   4
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   4
 
 1.  Introduction
 
@@ -101,18 +106,16 @@ Table of Contents
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
    "OPTIONAL" in this document are to be interpreted as described in BCP
-   14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
 
 
 
-
-
-
-Montenegro              Expires February 28, 2019               [Page 2]
+Montenegro, et al.      Expires February 28, 2019               [Page 2]
 
 Internet-Draft               Datacenter QUIC                 August 2018
 
+
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
 
 3.  Transport Parameter to Disable Packet Number Protection
 
@@ -162,10 +165,7 @@ Internet-Draft               Datacenter QUIC                 August 2018
 
 
 
-
-
-
-Montenegro              Expires February 28, 2019               [Page 3]
+Montenegro, et al.      Expires February 28, 2019               [Page 3]
 
 Internet-Draft               Datacenter QUIC                 August 2018
 
@@ -191,7 +191,7 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
 
    Gabriel Montenegro
    Microsoft Corporation
@@ -199,6 +199,16 @@ Author's Address
    Email: Gabriel.Montenegro@Microsoft.com
 
 
+   Nick Banks
+   Microsoft Corporation
+
+   Email: NiBanks@Microsoft.com
+
+
+   Praveen Balasubramanian
+   Microsoft Corporation
+
+   Email: PravB@Microsoft.com
 
 
 
@@ -211,14 +221,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-
-Montenegro              Expires February 28, 2019               [Page 4]
+Montenegro, et al.      Expires February 28, 2019               [Page 4]
