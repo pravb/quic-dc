@@ -72,7 +72,7 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Conventions and Definitions . . . . . . . . . . . . . . . . .   2
-   3.  Transport Parameter to Disable Packet Number Protection . . .   2
+   3.  Transport Parameter to Disable Packet Number Protection . . .   3
    4.  Security Considerations . . . . . . . . . . . . . . . . . . .   3
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   3
    6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
@@ -85,12 +85,16 @@ Table of Contents
 
    QUIC is a new transport for the internet.  In its generality, there
    are features which are not well suited for datacenter environments.
-   In particular, QUIC uses Packet Number Protection(PNP).  This
-   document defines a negotiation using transport parameters to disable
-   PNE.  Internet facing nodes should not disable PNE, so browsers, for
-   example, should not implement this extension.  On the other hand,
-   properly configured nodes within a datacenter could turn off PNE in
-   their exchanges to avoid the CPU cost that PNE implies.
+   In particular, QUIC uses Packet Number Protection (PNP) to prevent
+   ossification and to provide unlinkability upon (voluntary) migration.
+   However, there are environments where these are not a concern, in
+   particular, connection within a datacenter and at the backend.
+
+   This document defines a negotiation using transport parameters to
+   disable PNE.  Internet facing nodes should not disable PNE, so
+   browsers, for example, should not implement this extension.  On the
+   other hand, properly configured nodes within a datacenter could turn
+   off PNE in their exchanges to avoid the CPU cost that PNE implies.
 
 2.  Conventions and Definitions
 
@@ -100,10 +104,6 @@ Table of Contents
    14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Transport Parameter to Disable Packet Number Protection
-
-   This document defines a new transport parameter for QUIC
-   [QUIC-TRANSPORT]:
 
 
 
@@ -114,14 +114,23 @@ Montenegro              Expires February 28, 2019               [Page 2]
 Internet-Draft               Datacenter QUIC                 August 2018
 
 
+3.  Transport Parameter to Disable Packet Number Protection
+
+   This document defines a new transport parameter for QUIC
+   [QUIC-TRANSPORT]:
+
    disable_packet_number_protection (0x000c ?, value TBD):  The endpoint
       is disabling packet number protection as specified in [QUIC-TLS].
       This parameter is a zero-length value.  This parameter only
-      applies to short headers.
+      affects short headers.
 
-   A peer that has sent the "disable_packet_number_protection" parameter
-   MUST provide packet number protection until the TLS handshake is over
-   (thus validating the transport parameters).
+   A successful negotiation of the "disable_packet_number_protection"
+   parameter requires both peers to send this transport parameter.
+
+   Peers that have successfully negotiated the
+   "disable_packet_number_protection" parameter MUST provide packet
+   number protection until the TLS handshake is over (thus validating
+   the transport parameters).
 
 4.  Security Considerations
 
@@ -152,15 +161,6 @@ Internet-Draft               Datacenter QUIC                 August 2018
               Multiplexed and Secure Transport", draft-ietf-quic-
               transport-latest (work in progress).
 
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
-
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
-
 
 
 
@@ -169,6 +169,15 @@ Montenegro              Expires February 28, 2019               [Page 3]
 
 Internet-Draft               Datacenter QUIC                 August 2018
 
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
 6.2.  URIs
 
@@ -188,15 +197,6 @@ Author's Address
    Microsoft Corporation
 
    Email: Gabriel.Montenegro@Microsoft.com
-
-
-
-
-
-
-
-
-
 
 
 
