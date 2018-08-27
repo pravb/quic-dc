@@ -88,7 +88,7 @@ Table of Contents
    In particular, QUIC uses Packet Number Protection (PNP) to prevent
    ossification and to provide unlinkability upon (voluntary) migration.
    However, there are environments where these are not a concern, in
-   particular, connection within a datacenter and at the backend.
+   particular, connections within a datacenter and in the backend.
 
    This document defines a negotiation using transport parameters to
    disable PNE.  Internet facing nodes should not disable PNE, so

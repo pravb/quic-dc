@@ -373,7 +373,7 @@ ul.toc li {
   <h1 id="rfc.section.1">
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
-<p id="rfc.section.1.p.1">QUIC is a new transport for the internet. In its generality, there are features which are not well suited for datacenter environments. In particular, QUIC uses Packet Number Protection (PNP) to prevent ossification and to provide unlinkability upon (voluntary) migration. However, there are environments where these are not a concern, in particular, connection within a datacenter and at the backend.</p>
+<p id="rfc.section.1.p.1">QUIC is a new transport for the internet. In its generality, there are features which are not well suited for datacenter environments. In particular, QUIC uses Packet Number Protection (PNP) to prevent ossification and to provide unlinkability upon (voluntary) migration.  However, there are environments where these are not a concern, in particular, connections within a datacenter and in the backend.</p>
 <p id="rfc.section.1.p.2">This document defines a negotiation using transport parameters to disable PNE. Internet facing nodes should not disable PNE, so browsers, for example, should not implement this extension. On the other hand, properly configured nodes within a datacenter could turn off PNE in their exchanges to avoid the CPU cost that PNE implies.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#conventions-and-definitions" id="conventions-and-definitions">Conventions and Definitions</a>
