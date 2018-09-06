@@ -71,8 +71,7 @@ informative:
 
 --- abstract
 
-This document defines extensions to make QUIC more
-amenable to datacenter environments by allowing packet number protection to be optionally disabled.
+This document defines an extension to reduce the cost of QUIC deployment in constrained environments like datacenters by allowing packet number protection to be optionally disabled.
 
 --- note_Note_to_Readers
 
@@ -91,12 +90,12 @@ code and issues list for this draft can be found at
 QUIC is a new transport for the internet. In its generality, there are features which are not well suited
 for datacenter environments. In particular, QUIC uses Packet Number Protection (PNP)
 to prevent ossification and to provide unlinkability upon (voluntary) migration.
-However, there are environments where these are not a concern, in particular,
-connections within a datacenter and in the backend.
+However, there are constrained environments where these are not a concern, in particular,
+connections within a datacenter.
 
 This document defines
-a negotiation using transport parameters to disable PNP. Internet facing nodes should not disable PNP, so
-browsers, for example, should not implement this extension. On the other hand, properly configured nodes
+a negotiation mechanims using transport parameters to disable PNP. Internet facing nodes MUST not disable PNP, so
+browsers, for example, should not implement this extension. On the other hand, configured nodes
 within a datacenter could turn off PNP in their exchanges to avoid the CPU cost that PNP implies.
 
 # Conventions and Definitions
